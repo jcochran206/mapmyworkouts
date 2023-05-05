@@ -2,9 +2,9 @@
 ## Description 
 
 ## Technologies
-[] HTML
-[] CSS
-[] JavaScript
+- HTML
+- CSS
+- JavaScript
 ## dependencies
 - leaflet JS
 ## Author
