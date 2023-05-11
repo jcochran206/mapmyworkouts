@@ -1,7 +1,6 @@
 //alert('hi');
 
 'use strict';
-alert('hi');
 const months = ["January", "Februrary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 const form = document.querySelector('.form');
@@ -18,6 +17,14 @@ const inputElevation = document.querySelector('.form__input--elevation');
         const {latitude} = position.coords;
         const {longitude} = position.coords;
         console.log('coordinates in lat and long',latitude, longitude);
+
+        const map = L.map('map').setView([51.505, -0.09], 13);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        L.marker([51.5, -0.09]).addTo(map)
     }, 
     function(){
         alert('Can not get position');
