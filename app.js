@@ -27,6 +27,24 @@ const inputElevation = document.querySelector('.form__input--elevation');
         }).addTo(map);
 
         L.marker(coords).addTo(map)
+
+        map.on("click", function(mapEvent){
+            const {lat, lng} = mapEvent.latlng
+
+            L.marker([lat, lng])
+            .addTo(map)
+            .bindPopup(
+                L.popup({
+                    maxWidth: 100,
+                    minWidth: 50,
+                    autoClose: false,
+                    closeOnClick: false,
+                    className: 'running-popup'
+                })
+            )
+            .setPopupContent('workouts')
+            .openPopup();
+        })
     }, 
     function(){
         alert('Can not get position');
