@@ -9,7 +9,7 @@ Map my workouts is an application logs a users running or cycling activities.
 5. see all my workouts when I leave the app and come back later
 6. focus on workout when clicked 
 ## features
-- geolocation to display map at current location
+- [x] geolocation to display map at current location
 - Map where user clicks to add new workout
 - Form to input distance, time, pace, steps/mins
 - Form to input distance, time speed, elevation gain
