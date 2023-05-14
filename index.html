@@ -16,10 +16,35 @@
     <body>
         <!--Sidebar with logo and form to capture workouts-->
         <div class="sidebar">
-            <div class="logo"> </div>
+            <div class="logo">MMW</div>
             <!--unordered list -->
             <ul class="workouts"> 
-                
+                <form class="form hidden">
+                    <div class="form__row">
+                        <label for="type" class="form__label">Type</label>
+                            <select class="form__input form__input--type" name="" id="">
+                                <option value="running">Running</option>
+                                <option value="cycling">Cycling</option>
+                            </select>
+                    </div>
+                    <div class="form__row">
+                        <label for="distance" class="form__label">Distance</label>
+                       <input class="form__input form__input--distance" placeholder="m"/>   
+                    </div>
+                    <div class="form__row">
+                        <label for="duration" class="form__label">Duration</label>
+                       <input class="form__input form__input--duration" placeholder="mins"/>   
+                    </div>
+                    <div class="form__row">
+                        <label for="cadencd" class="form__label">Cadence</label>
+                       <input class="form__input form__input--cadence" placeholder="step/min"/>   
+                    </div>
+                    <div class="form__row">
+                        <label for="elevation" class="form__label">Elev Gain</label>
+                       <input class="form__input form__input--elevation" placeholder="meters"/>   
+                    </div>
+                    <button class="form__btn">OK</button>
+                </form>
             </ul>
         </div>
         <!--Map goes here-->

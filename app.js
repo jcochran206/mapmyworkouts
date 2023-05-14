@@ -29,6 +29,7 @@ const inputElevation = document.querySelector('.form__input--elevation');
         L.marker(coords).addTo(map)
 
         map.on("click", function(mapEvent){
+            form.classList.remove('hidden')
             const {lat, lng} = mapEvent.latlng
 
             L.marker([lat, lng])
