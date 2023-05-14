@@ -11,6 +11,8 @@ const inputDuration = document.querySelector('.form__input--duration');
 const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
 
+let map; 
+let mapEvent;//global variables
 
     navigator.geolocation.getCurrentPosition(
     function(position){
@@ -20,17 +22,36 @@ const inputElevation = document.querySelector('.form__input--elevation');
 
         const coords = [latitude, longitude]
 
-        const map = L.map('map').setView(coords, 13);
+        map = L.map('map').setView(coords, 13);
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
         L.marker(coords).addTo(map)
-
-        map.on("click", function(mapEvent){
+        //map specific events to handle 
+        map.on("click", function(mapE){
+            mapEvent = mapE;
             form.classList.remove('hidden')
-            const {lat, lng} = mapEvent.latlng
+            inputDistance.focus()
+            
+        })
+    }, 
+    function(){
+        alert('Can not get position');
+    });
+
+//form events 
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    //clear input fields 
+    inputDistance.value = "";
+    inputDuration.value = "";
+    inputCadence.value = "";
+    inputElevation.value = "";
+
+    //display marker on submit
+    const {lat, lng} = mapEvent.latlng
 
             L.marker([lat, lng])
             .addTo(map)
@@ -45,11 +66,11 @@ const inputElevation = document.querySelector('.form__input--elevation');
             )
             .setPopupContent('workouts')
             .openPopup();
-        })
-    }, 
-    function(){
-        alert('Can not get position');
-    });
+});
 
+inputType.addEventListener('change', function() {
+    inputElevation.closest('.form__row').classList.toggle('form__row--hidden');
+    inputCadence.closest('.form__row').classList.toggle('form__row--hidden');
+});
 
 
