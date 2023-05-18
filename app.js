@@ -1,7 +1,7 @@
 //alert('hi');
 
 'use strict';
-const months = ["January", "Februrary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+c
 
 const form = document.querySelector('.form');
 const containerWorkouts = document.querySelector('.workouts');
@@ -20,6 +20,13 @@ class Workout {
         this.coords = coords; //[lat, lng]
         this.distance = distance; //meters
         this.duration = duration;// in min
+    }
+
+    _setDescription() {
+        const months = ["January", "Februrary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        this.description = `${this.type[0].toUpperCase()}${this.type.slice(1)} on ${months[this.date.getMonth()]} 
+        ${this.date.getDate()}`;
     }
 }
 
@@ -145,7 +152,7 @@ class App {
         this.#workouts.push(workout);
         console.log(workout);
         //render work out on map as marker 
-        this.renderWorkoutmarker(workout);
+        this._renderWorkoutmarker(workout);
     
         
         //render workout on list 
@@ -161,7 +168,7 @@ class App {
 
     }
 
-    renderWorkoutmarker(workout){
+    _renderWorkoutmarker(workout){
         L.marker(workout.coords)
         .addTo(this.#map)
         .bindPopup(
@@ -175,6 +182,23 @@ class App {
         )
         .setPopupContent('workout')
         .openPopup();
+    }
+
+    _renderWorkout(workout){
+       const html = `
+       <li class="workout workout--${workout.type}" data-id="${workout.id}">
+       <h2 class="workout__title">Running on April 14</h2>
+          <div class="workout__details">
+            <span class="workout__icon">${workout.type === 'running' ? '🏃‍♂️' : '🚴‍♀️'}</span>
+            <span class="workout__value">${workout.distance}</span>
+            <span class="workout__unit">km</span>
+          </div>
+          <div class="workout__details">
+            <span class="workout__icon">⏱</span>
+            <span class="workout__value">${workout.duration}</span>
+            <span class="workout__unit">min</span>
+          </div>
+        `
     }
 }
 
