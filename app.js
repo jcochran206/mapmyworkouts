@@ -78,6 +78,9 @@ class App {
         //get position
         this._getPosition();
 
+        //getLocalStorage data
+        this._getLocalStorageData();
+
         form.addEventListener('submit', this._newWorkout.bind(this));
         
         inputType.addEventListener('change', this._toggleElevation.bind(this));
@@ -107,6 +110,10 @@ class App {
         L.marker(coords).addTo(this.#map)
         //map specific events to handle 
         this.#map.on("click", this._showForm.bind(this))
+        //this is needed here for localstorage loaded data
+        this.#workouts.forEach(work => {
+          this._renderWorkoutmarker(work);  
+        })
     }
 
     _showForm(mapE){
@@ -186,7 +193,8 @@ class App {
         this._hideForm();
         
     
-        //display marker on submit
+        //set localstorage to keep workouts
+        this._setLocalStorage();
 
     }
 
@@ -273,7 +281,24 @@ class App {
 
         //workout clicks
         workout.click();
+    }
 
+    _setLocalStorage(){
+       localStorage.setItem('workouts', JSON.stringify(this.#workouts)); 
+    }
+
+    _getLocalStorageData(){
+        //this converts data into json for workouts
+        const data = JSON.parse(localStorage.getItem('workouts'));
+        console.log(data, 'localstorage item');
+        //conditional to check for data
+        if(!data){return};
+        //passes data to workouts
+        this.#workouts = data;
+        //loops thru without creating a new array 
+        this.#workouts.forEach(work => {
+          this._renderWorkout(work);
+        });
     }
 }
 
