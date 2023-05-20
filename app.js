@@ -97,7 +97,7 @@ class App {
     _loadMap(position){
         const {latitude} = position.coords;
         const {longitude} = position.coords;
-        console.log('coordinates in lat and long',latitude, longitude);
+        //console.log('coordinates in lat and long',latitude, longitude);
 
         const coords = [latitude, longitude]
 
@@ -181,7 +181,7 @@ class App {
         }
         // add new object to workout array 
         this.#workouts.push(workout);
-        console.log(workout);
+        //console.log(workout);
         //render work out on map as marker 
         this._renderWorkoutmarker(workout);
     
@@ -268,7 +268,7 @@ class App {
         const workoutEl = e.target.closest('.workout');
         if(!workoutEl) return;
 
-        console.log(workoutEl, 'element of workout')
+        //console.log(workoutEl, 'element of workout')
 
         const workout = this.#workouts.find(work => work.id === workoutEl.dataset.id);
 
@@ -280,7 +280,7 @@ class App {
         });
 
         //workout clicks
-        workout.click();
+        //workout.click();
     }
 
     _setLocalStorage(){
@@ -290,7 +290,7 @@ class App {
     _getLocalStorageData(){
         //this converts data into json for workouts
         const data = JSON.parse(localStorage.getItem('workouts'));
-        console.log(data, 'localstorage item');
+        //console.log(data, 'localstorage item');
         //conditional to check for data
         if(!data){return};
         //passes data to workouts
@@ -299,6 +299,11 @@ class App {
         this.#workouts.forEach(work => {
           this._renderWorkout(work);
         });
+    }
+
+    reset(){
+        localStorage.removeItem('workouts');
+        location.reload();
     }
 }
 
