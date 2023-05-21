@@ -11,13 +11,13 @@ Map my workouts is an application logs a users running or cycling activities.
 ## features
 - [x] geolocation to display map at current location
 - [x] Map where user clicks to add new workout
-- Form to input distance, time, pace, steps/mins
-- Form to input distance, time speed, elevation gain
-- display workouts in a list 
-- display workouts on the map
-- store workout data in browser
-- on page load, read the saved data and display
-- move map to workout location on click
+- [x] Form to input distance, time, pace, steps/mins
+- [x] Form to input distance, time speed, elevation gain
+- [x] display workouts in a list 
+- [x] display workouts on the map
+- [x] store workout data in browser
+- [x] on page load, read the saved data and display
+- [x] move map to workout location on click
 ## Technologies
 - HTML
 - CSS
